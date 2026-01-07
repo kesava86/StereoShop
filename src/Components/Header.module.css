@@ -1,0 +1,27 @@
+.iconBox {
+  position: relative;
+  cursor: pointer;
+}
+
+/* hidden by default */
+.iconText {
+  position: absolute;
+  top: 150%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: black;
+  color: white;
+  padding: 4px 10px;
+  border: 1px solid white;
+  border-radius: 5px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+/* show on hover */
+.iconBox:hover .iconText {
+  opacity: 1;
+}
