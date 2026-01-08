@@ -10,7 +10,7 @@ export default function Header() {
   return (
     <>
       {/* HEADER */}
-      <div className="d-flex align-items-center justify-content-between px-5 py-4">
+      <div className="d-flex align-items-center justify-content-between px-4 py-4 bg-black" >
         <Link to="/" className="text-decoration-none">
           <h1 className="fs-3 text-white m-0" style={{ cursor: "pointer" }}>
             STEREO SHOP
@@ -26,15 +26,17 @@ export default function Header() {
           <Link to="/cart" className="text-white text-decoration-none">
             <div className={`${styles.iconBox} me-5`}>
               <IoCartOutline size={22} />
-
               <span className={styles.iconText}>Cart</span>
             </div>
           </Link>
 
+          <Link to="/signup" className="text-white text-decoration-none">
           <div className={styles.iconBox}>
             <GoPerson size={20} />
             <span className={styles.iconText}>Profile</span>
           </div>
+          </Link>
+
         </div>
 
         {/* Mobile Hamburger */}
@@ -49,7 +51,7 @@ export default function Header() {
 
       {/* MOBILE MENU */}
       {open && (
-        <div className="d-sm-none text-white px-4 py-3">
+        <div className="d-sm-none text-white px-4 py-3 bg-black">
           <p className="mb-3">Search</p>
 
           <Link

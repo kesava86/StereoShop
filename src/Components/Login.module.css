@@ -1,0 +1,53 @@
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 999;
+}
+
+.loginBox {
+    width: 380px;
+    background: #0e0e0e;
+    border-radius: 10px;
+    position: relative;
+}
+
+.closeBtn {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    background: none;
+    border: none;
+    font-size: 22px;
+    color: #aaa;
+    cursor: pointer;
+}
+
+.closeBtn:hover {
+    color: #fff;
+}
+
+.input {
+    background: #121212 !important;
+    border: 1px solid #333 !important;
+    color: white !important;
+    margin-bottom: 15px;
+}
+
+.input::placeholder {
+    color: #888;
+}
+
+.input:focus {
+    border-color: red !important;
+    box-shadow: none !important;
+}
+
+.loginBtn {
+    font-weight: 500;
+}
+
+.linkText {
+    color: white;
+    cursor: pointer;
+}

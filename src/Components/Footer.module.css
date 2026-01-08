@@ -1,0 +1,19 @@
+.footer {
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.footer:hover {
+    color: white !important;
+}
+
+.icon {
+  color: white;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.icon:hover {
+  color: orangered;
+  transform: translateY(-2px);
+}
