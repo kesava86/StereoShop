@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { IoSearch, IoCartOutline, IoMenu, IoClose } from "react-icons/io5";
 import { GoPerson } from "react-icons/go";
 import styles from "./Header.module.css";
@@ -10,7 +11,11 @@ export default function Header() {
     <>
       {/* HEADER */}
       <div className="d-flex align-items-center justify-content-between px-5 py-4">
-        <h1 className="fs-3 text-white m-0 " style={{ cursor: "pointer" }}>STEREO SHOP</h1>
+        <Link to="/" className="text-decoration-none">
+          <h1 className="fs-3 text-white m-0" style={{ cursor: "pointer" }}>
+            STEREO SHOP
+          </h1>
+        </Link>
 
         {/* Desktop Icons */}
         <div className="d-none d-sm-flex align-items-center text-white">
@@ -18,11 +23,13 @@ export default function Header() {
             <IoSearch size={20} />
             <span className={styles.iconText}>Search</span>
           </div>
+          <Link to="/cart" className="text-white text-decoration-none">
+            <div className={`${styles.iconBox} me-5`}>
+              <IoCartOutline size={22} />
 
-          <div className={`${styles.iconBox} me-5`}>
-            <IoCartOutline size={22} />
-            <span className={styles.iconText}>Cart</span>
-          </div>
+              <span className={styles.iconText}>Cart</span>
+            </div>
+          </Link>
 
           <div className={styles.iconBox}>
             <GoPerson size={20} />
@@ -33,17 +40,9 @@ export default function Header() {
         {/* Mobile Hamburger */}
         <div className="d-sm-none text-white">
           {open ? (
-            <IoClose
-              size={28}
-              style={{ cursor: "pointer" }}
-              onClick={() => setOpen(false)}
-            />
+            <IoClose size={28} onClick={() => setOpen(false)} />
           ) : (
-            <IoMenu
-              size={28}
-              style={{ cursor: "pointer" }}
-              onClick={() => setOpen(true)}
-            />
+            <IoMenu size={28} onClick={() => setOpen(true)} />
           )}
         </div>
       </div>
@@ -52,7 +51,15 @@ export default function Header() {
       {open && (
         <div className="d-sm-none text-white px-4 py-3">
           <p className="mb-3">Search</p>
-          <p className="mb-3">Cart</p>
+
+          <Link
+            to="/cart"
+            className="text-white text-decoration-none"
+            onClick={() => setOpen(false)}
+          >
+            <p className="mb-3">Cart</p>
+          </Link>
+
           <p className="mb-0">Profile</p>
         </div>
       )}
