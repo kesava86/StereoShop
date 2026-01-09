@@ -21,7 +21,7 @@ export default function Footer() {
             <div className="d-flex flex-column flex-sm-row gap-2">
               <input
                 type="email"
-                className="form-control bg-dark text-white border-secondary w-100"
+                className={`form-control bg-dark text-white border-secondary w-100 ${styles.input}`}
                 placeholder="Email Address"
               />
               <button className="btn btn-danger px-2">

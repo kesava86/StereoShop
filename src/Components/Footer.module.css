@@ -1,3 +1,7 @@
+.input::placeholder {
+  color: #888 !important;
+}
+
 .footer {
   cursor: pointer;
   transition: color 0.3s ease;

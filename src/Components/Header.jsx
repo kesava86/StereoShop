@@ -47,8 +47,8 @@ export default function Header() {
               </p>
 
               <p
-                className=" w-100 mb-2 "
-                style={{cursor:"pointer"}}
+                className=" w-50 mb-2 text-secondary "
+                style={{cursor:"pointer", border:"1px solid #444", padding:"4px", borderRadius:"2px"}}
                 onClick={()=> navigate("/login")}
               >
                 Login / Signup
@@ -56,8 +56,8 @@ export default function Header() {
               <hr />
 
               <p
-                className="text-secondary small mb-0"
-                style={{ cursor: "pointer" }}
+                className="text-secondary small mb-0 "
+                style={{ cursor: "pointer"}}
                 onClick={() => navigate("/login")}
               >
                 Please Login
