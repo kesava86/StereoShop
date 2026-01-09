@@ -1,28 +1,30 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IoSearch, IoCartOutline, IoMenu, IoClose } from "react-icons/io5";
 import { GoPerson } from "react-icons/go";
 import styles from "./Header.module.css";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
+
 
   return (
     <>
       {/* HEADER */}
-      <div className="d-flex align-items-center justify-content-between px-4 py-4 bg-black" >
+      <div className="d-flex align-items-center justify-content-between px-4 py-4 bg-black">
         <Link to="/" className="text-decoration-none">
-          <h1 className="fs-3 text-white m-0" style={{ cursor: "pointer" }}>
-            STEREO SHOP
-          </h1>
+          <h1 className="fs-3 text-white m-0">STEREO SHOP</h1>
         </Link>
 
         {/* Desktop Icons */}
         <div className="d-none d-sm-flex align-items-center text-white">
-          <div className={`${styles.iconBox} me-5`}>
+
+          <div className={`${styles.iconBox} me-5 shadow`}>
             <IoSearch size={20} />
             <span className={styles.iconText}>Search</span>
           </div>
+
           <Link to="/cart" className="text-white text-decoration-none">
             <div className={`${styles.iconBox} me-5`}>
               <IoCartOutline size={22} />
@@ -30,13 +32,38 @@ export default function Header() {
             </div>
           </Link>
 
-          <Link to="/signup" className="text-white text-decoration-none">
-          <div className={styles.iconBox}>
-            <GoPerson size={20} />
-            <span className={styles.iconText}>Profile</span>
-          </div>
-          </Link>
+          {/* PROFILE DROPDOWN */}
+          <div className={`position-relative ${styles.profileWrapper}`}>
+            <div onClick={()=>navigate("/login")} style={{cursor:"pointer"}}>
+              <GoPerson size={20} />
+              <span className={styles.iconText} >Profile</span>
+            </div>
 
+            {/* Dropdown */}
+            <div className={`${styles.profileDropdown} shadow`}>
+              <p className="mb-1 text-white fw-semibold">Hello!</p>
+              <p className="small text-secondary mb-3">
+                Access account and manage orders
+              </p>
+
+              <p
+                className=" w-100 mb-2 "
+                style={{cursor:"pointer"}}
+                onClick={()=> navigate("/login")}
+              >
+                Login / Signup
+              </p>
+              <hr />
+
+              <p
+                className="text-secondary small mb-0"
+                style={{ cursor: "pointer" }}
+                onClick={() => navigate("/login")}
+              >
+                Please Login
+              </p>
+            </div>
+          </div>
         </div>
 
         {/* Mobile Hamburger */}
@@ -52,17 +79,11 @@ export default function Header() {
       {/* MOBILE MENU */}
       {open && (
         <div className="d-sm-none text-white px-4 py-3 bg-black">
-          <p className="mb-3">Search</p>
+          <p className="mb-3" style={{cursor:"pointer"}} >Search</p>
 
-          <Link
-            to="/cart"
-            className="text-white text-decoration-none"
-            onClick={() => setOpen(false)}
-          >
-            <p className="mb-3">Cart</p>
-          </Link>
+            <p className="mb-3" style={{cursor:"pointer"}}  onClick={()=>navigate("/cart")}>Cart</p>
 
-          <p className="mb-0">Profile</p>
+          <p className="mb-0" style={{cursor:"pointer"}} onClick={()=> navigate("/login")}>Profile</p>
         </div>
       )}
     </>
