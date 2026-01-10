@@ -61,7 +61,7 @@
 
 .featuredWrapper {
   background: #000;
-  padding: 80px 0;
+  padding: 80px 10px;
 }
 
 .featuredSlider {
@@ -78,7 +78,7 @@
   text-align: center;
   opacity: 0.5;
   transition: all 0.4s ease;
-  height: 360px;
+  height: 380px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -94,12 +94,213 @@
 /* NORMAL IMAGE */
 .featuredItem img {
   width: 100%;
-  height: 250px;
+  height: 200px;
   object-fit: contain;
   transition: all 0.4s ease;
 }
 
 .featuredActive img {
   height: 380px;
-  transform: scale(1.3);
+  transform: scale(1.4);
+}
+
+/* ---------- TOP PRODUCTS ---------- */
+
+.topWrapper {
+  background: #000;
+  padding: 80px 0;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: nowrap;
+}
+
+.tab {
+  background: none;
+  border: none;
+  color: #aaa;
+  font-size: 14px;
+  padding: 6px 14px;
+  cursor: pointer;
+}
+
+.activeTab {
+  background: red;
+  color: white;
+  border-radius: 4px;
+}
+
+/* Cards */
+.topCard {
+  background: #111;
+  border: 1px solid #222;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.topImg {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+}
+
+.topBody {
+  padding: 15px;
+  flex: 1;
+}
+
+.rating {
+  color: red;
+  margin-bottom: 6px;
+}
+
+.priceRow {
+  display: flex;
+  gap: 10px;
+}
+
+.finalPrice {
+  color: white;
+  font-weight: 600;
+}
+
+.oldPrice {
+  color: #777;
+  text-decoration: line-through;
+}
+
+.cartBtn {
+  background: red;
+  border: none;
+  color: white;
+  padding: 5px;
+  margin: 15px;
+}
+
+/* Browse All Card */
+.browseCard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+@media (max-width: 991px) {
+  .tabs {
+    gap: 20px;
+  }
+
+  .tab {
+    font-size: 13px;
+    padding: 5px 12px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .tabs {
+    flex-wrap: wrap;                 /* 🔑 allow wrapping */
+    gap: 12px;
+    padding: 0 10px;
+  }
+
+  .tab {
+    font-size: 12px;
+    padding: 6px 14px;
+    border-radius: 4px;
+  }
+}
+
+
+/* ---------- FEATURED RESPONSIVE ---------- */
+
+/* Tablet: show 3 items */
+@media (max-width: 991px) {
+  .featuredItem {
+    width: 30%;
+  }
+
+  /* hide far side items */
+  .featuredItem:not(.featuredActive):nth-child(1),
+  .featuredItem:not(.featuredActive):nth-child(5) {
+    display: none;
+  }
+}
+
+/* Mobile: show ONLY center item */
+@media (max-width: 576px) {
+  .featuredSlider {
+    justify-content: center;
+  }
+
+  .featuredItem {
+    width: 80%;
+    display: none;            /* hide all */
+  }
+
+  .featuredActive {
+    display: block;           /* show center only */
+  }
+}
+
+
+/* ---------- HERO SLIDER RESPONSIVE ---------- */
+
+/* Tablet */
+@media (max-width: 991px) {
+  .productImage {
+    max-height: 320px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+  .productImage {
+    max-height: 220px;     /* ↓ smaller image */
+  }
+
+  .heading {
+    font-size: 28px;       /* optional: better balance */
+  }
+}
+
+
+/* ---------- OUR ADVANTAGES ---------- */
+
+.advWrapper {
+  background: #000;
+  padding: 80px 0;
+}
+
+.advItem {
+  padding: 20px;
+}
+
+.icon {
+  font-size: 34px;
+  color: red;
+  flex-shrink: 0;
+}
+
+/* Tablet */
+@media (max-width: 991px) {
+  .icon {
+    font-size: 32px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+  .advWrapper {
+    padding: 60px 0;
+  }
+
+  .icon {
+    font-size: 28px;
+  }
 }

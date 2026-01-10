@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import productsData from "../../src/Data/productsData.js";
 import styles from "./Home.module.css";
+import { FaShippingFast, FaShieldAlt, FaTags, FaLock } from "react-icons/fa";
 
 export default function Home() {
   /* ---------------- HERO SLIDER ---------------- */
@@ -19,7 +20,7 @@ export default function Home() {
 
   /* ---------------- FEATURED SLIDER ---------------- */
   const featuredProducts = productsData.slice(0, 10);
-  const [current, setCurrent] = useState(2); // center index
+  const [current, setCurrent] = useState(2);
 
   const visibleCount = 5;
   const half = Math.floor(visibleCount / 2);
@@ -42,9 +43,19 @@ export default function Home() {
     return () => clearInterval(auto);
   }, []);
 
+  /* ---------------- TOP PRODUCTS ---------------- */
+
+  const categories = ["All", "Headphones", "Earbuds", "Earphones", "Neckbands"];
+  const [activeCategory, setActiveCategory] = useState("All");
+
+  const topProducts =
+    activeCategory === "All"
+      ? productsData.slice(0, 11)
+      : productsData.filter((item) => item.category === activeCategory);
+
   return (
     <>
-      {/* ================= HERO SLIDER ================= */}
+      {/*  HERO SLIDER  */}
       <div className={styles.sliderWrapper}>
         <div className="container">
           <div className="row align-items-center">
@@ -132,6 +143,122 @@ export default function Home() {
               onClick={() => setCurrent(i)}
             />
           ))}
+        </div>
+      </div>
+
+      {/* ================= TOP PRODUCTS ================= */}
+      <div className={styles.topWrapper}>
+        <h3 className="text-center text-white mb-4">Top Products</h3>
+
+        {/* CATEGORY TABS */}
+        <div className={styles.tabs}>
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              className={`${styles.tab} ${
+                activeCategory === cat ? styles.activeTab : ""
+              }`}
+              onClick={() => setActiveCategory(cat)}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+
+        {/* PRODUCTS GRID */}
+        <div className="container">
+          <div className="row g-4 mt-3">
+            {topProducts.map((item) => (
+              <div key={item.id} className="col-lg-3 col-md-4 col-sm-6">
+                <div className={styles.topCard}>
+                  <img
+                    src={item.images[0]}
+                    alt={item.title}
+                    className={styles.topImg}
+                  />
+
+                  <div className={styles.topBody}>
+                    <div className={styles.rating}>★★★★★</div>
+
+                    <h6 className="text-white">{item.title}</h6>
+                    <p className="text-secondary small">{item.info}</p>
+
+                    <div className={styles.priceRow}>
+                      <span className={styles.finalPrice}>
+                        ₹{item.finalPrice}
+                      </span>
+                      <span className={styles.oldPrice}>
+                        ₹{item.originalPrice}
+                      </span>
+                    </div>
+                  </div>
+
+                  <button className={styles.cartBtn}>Add to cart</button>
+                </div>
+              </div>
+            ))}
+
+            {/* BROWSE ALL PRODUCTS CARD */}
+            <div className="col-lg-3 col-md-4 col-sm-6">
+              <div className={`${styles.topCard} ${styles.browseCard}`}>
+                <h5 className="text-secondary">Browse All Products →</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className={styles.advWrapper}>
+        <h3 className="text-center text-white mb-5">Our Advantages</h3>
+
+        <div className="container">
+          <div className="row gy-4">
+            <div className="col-lg-3 col-md-6">
+              <div className={`${styles.advItem} d-flex align-items-start`}>
+                <FaShippingFast className={styles.icon} />
+                <div className="ms-3">
+                  <h6 className="text-white mb-1">Express Delivery</h6>
+                  <p className="text-secondary small mb-0">Ships in 24 Hours</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="col-lg-3 col-md-6">
+              <div className={`${styles.advItem} d-flex align-items-start`}>
+                <FaShieldAlt className={styles.icon} />
+                <div className="ms-3">
+                  <h6 className="text-white mb-1">Brand Warranty</h6>
+                  <p className="text-secondary small mb-0">
+                    100% Original products
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="col-lg-3 col-md-6">
+              <div className={`${styles.advItem} d-flex align-items-start`}>
+                <FaTags className={styles.icon} />
+                <div className="ms-3">
+                  <h6 className="text-white mb-1">Exciting Deals</h6>
+                  <p className="text-secondary small mb-0">
+                    On all prepaid orders
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="col-lg-3 col-md-6">
+              <div className={`${styles.advItem} d-flex align-items-start`}>
+                <FaLock className={styles.icon} />
+                <div className="ms-3">
+                  <h6 className="text-white mb-1">Secure Payments</h6>
+                  <p className="text-secondary small mb-0">
+                    SSL / Secure certificate
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </>
