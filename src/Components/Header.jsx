@@ -33,11 +33,13 @@ export default function Header() {
           </Link>
 
           {/* PROFILE DROPDOWN */}
+
           <div className={`position-relative ${styles.profileWrapper}`}>
             <div onClick={()=>navigate("/login")} style={{cursor:"pointer"}}>
               <GoPerson size={20} />
               <span className={styles.iconText} >Profile</span>
             </div>
+            
 
             {/* Dropdown */}
             <div className={`${styles.profileDropdown} shadow`}>
