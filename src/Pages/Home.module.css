@@ -157,6 +157,7 @@
 .rating {
   color: red;
   margin-bottom: 6px;
+  font-size: 14px;
 }
 
 .priceRow {
@@ -303,4 +304,15 @@
   .icon {
     font-size: 28px;
   }
+}
+
+
+.browseCard {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.browseCard:hover {
+  border-color: red;
+  transform: translateY(-4px);
 }

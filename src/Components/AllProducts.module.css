@@ -1,0 +1,131 @@
+.wrapper {
+    background: #000;
+    min-height: 100vh;
+    padding: 40px 0;
+}
+
+/* Sidebar */
+.sidebar {
+    background: #111;
+    padding: 14px;
+    max-height: 85vh;
+    overflow-y: auto ;
+}
+
+/* ---------- DARK SCROLLBAR ---------- */
+
+.sidebar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: #000;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 0px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Firefox */
+.sidebar {
+  scrollbar-width:auto;
+  scrollbar-color: #333 #000;
+
+}
+
+.clearBtn {
+    background: red;
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.heading {
+    color: #aaa;
+    border-bottom: 1px solid #333;
+    padding-bottom: 8px;
+    margin-top: 20px;
+}
+
+.subHeading {
+    color: #aaa;
+    margin-top: 15px;
+}
+
+.list {
+    list-style: none;
+    padding: 0;
+}
+
+.list li {
+    color: #aaa;
+    margin: 8px 0;
+    cursor: pointer;
+}
+
+.red {
+    color: red;
+}
+
+.checkbox {
+    display: block;
+    color: #aaa;
+    margin: 6px 0;
+}
+
+.range {
+    width: 100%;
+}
+
+/* Product Cards */
+.card {
+    background: #111;
+    border: 1px solid #222;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.img {
+    height: 180px;
+    object-fit: contain;
+}
+
+.body {
+    padding: 15px;
+    flex: 1;
+}
+
+.rating {
+    color: red;
+}
+
+.priceRow {
+    display: flex;
+    gap: 10px;
+}
+
+.final {
+    color: white;
+    font-weight: 600;
+}
+
+.old {
+    color: #777;
+    text-decoration: line-through;
+}
+
+.cartBtn {
+    background: red;
+    border: none;
+    color: white;
+    padding: 5px;
+    margin: 10px;
+}

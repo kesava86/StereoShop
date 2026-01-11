@@ -2,11 +2,24 @@ import React, { useEffect, useState } from "react";
 import productsData from "../../src/Data/productsData.js";
 import styles from "./Home.module.css";
 import { FaShippingFast, FaShieldAlt, FaTags, FaLock } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   /* ---------------- HERO SLIDER ---------------- */
   const sliderProducts = productsData.slice(0, 3);
   const [activeIndex, setActiveIndex] = useState(0);
+  const renderStars = (count) => {
+  return (
+    <>
+      {[...Array(5)].map((_, i) => (
+        <span key={i} style={{ color: i < count ? "red" : "#555" }}>
+          ★
+        </span>
+      ))}
+    </>
+  );
+};
+
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -178,7 +191,9 @@ export default function Home() {
                   />
 
                   <div className={styles.topBody}>
-                    <div className={styles.rating}>★★★★★</div>
+                    <div className={styles.rating}>
+                      {renderStars(item.rateCount)}
+                    </div>
 
                     <h6 className="text-white">{item.title}</h6>
                     <p className="text-secondary small">{item.info}</p>
@@ -200,9 +215,11 @@ export default function Home() {
 
             {/* BROWSE ALL PRODUCTS CARD */}
             <div className="col-lg-3 col-md-4 col-sm-6">
-              <div className={`${styles.topCard} ${styles.browseCard}`}>
-                <h5 className="text-secondary">Browse All Products →</h5>
-              </div>
+              <Link to="/products" className="text-decoration-none">
+                <div className={`${styles.topCard} ${styles.browseCard}`}>
+                  <h5 className="text-secondary">Browse All Products →</h5>
+                </div>
+              </Link>
             </div>
           </div>
         </div>
