@@ -3,43 +3,56 @@ import { Link, useNavigate } from "react-router-dom";
 import { IoSearch, IoCartOutline, IoMenu, IoClose } from "react-icons/io5";
 import { GoPerson } from "react-icons/go";
 import styles from "./Header.module.css";
+import { useCart } from "../Context/CartContext";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
 
+  const { cart } = useCart();
+
+  // total quantity (important)
+  const cartCount = cart.reduce((sum, item) => sum + item.qty, 0);
 
   return (
     <>
       {/* HEADER */}
-      <div className="d-flex align-items-center justify-content-between px-4 py-4 bg-black">
+      <div className="d-flex align-items-center justify-content-between px-4 py-4">
         <Link to="/" className="text-decoration-none">
           <h1 className="fs-3 text-white m-0">STEREO SHOP</h1>
         </Link>
 
         {/* Desktop Icons */}
         <div className="d-none d-sm-flex align-items-center text-white">
-
           <div className={`${styles.iconBox} me-5 shadow`}>
             <IoSearch size={20} />
             <span className={styles.iconText}>Search</span>
           </div>
 
-          <Link to="/cart" className="text-white text-decoration-none">
+          <Link
+            to="/cart"
+            className="text-white text-decoration-none position-relative"
+          >
             <div className={`${styles.iconBox} me-5`}>
               <IoCartOutline size={22} />
               <span className={styles.iconText}>Cart</span>
+
+              {cartCount > 0 && (
+                <span className={styles.cartBadge}>{cartCount}</span>
+              )}
             </div>
           </Link>
 
           {/* PROFILE DROPDOWN */}
 
           <div className={`position-relative ${styles.profileWrapper}`}>
-            <div onClick={()=>navigate("/login")} style={{cursor:"pointer"}}>
+            <div
+              onClick={() => navigate("/login")}
+              style={{ cursor: "pointer" }}
+            >
               <GoPerson size={20} />
-              <span className={styles.iconText} >Profile</span>
+              <span className={styles.iconText}>Profile</span>
             </div>
-            
 
             {/* Dropdown */}
             <div className={`${styles.profileDropdown} shadow`}>
@@ -50,8 +63,13 @@ export default function Header() {
 
               <p
                 className=" w-50 mb-2 text-secondary "
-                style={{cursor:"pointer", border:"1px solid #444", padding:"4px", borderRadius:"2px"}}
-                onClick={()=> navigate("/login")}
+                style={{
+                  cursor: "pointer",
+                  border: "1px solid #444",
+                  padding: "4px",
+                  borderRadius: "2px",
+                }}
+                onClick={() => navigate("/login")}
               >
                 Login / Signup
               </p>
@@ -59,7 +77,7 @@ export default function Header() {
 
               <p
                 className="text-secondary small mb-0 "
-                style={{ cursor: "pointer"}}
+                style={{ cursor: "pointer" }}
                 onClick={() => navigate("/login")}
               >
                 Please Login
@@ -81,11 +99,25 @@ export default function Header() {
       {/* MOBILE MENU */}
       {open && (
         <div className="d-sm-none text-white px-4 py-3 bg-black">
-          <p className="mb-3" style={{cursor:"pointer"}} >Search</p>
+          <p className="mb-3" style={{ cursor: "pointer" }}>
+            Search
+          </p>
 
-            <p className="mb-3" style={{cursor:"pointer"}}  onClick={()=>navigate("/cart")}>Cart</p>
+          <p
+            className="mb-3"
+            style={{ cursor: "pointer" }}
+            onClick={() => navigate("/cart")}
+          >
+            Cart
+          </p>
 
-          <p className="mb-0" style={{cursor:"pointer"}} onClick={()=> navigate("/login")}>Profile</p>
+          <p
+            className="mb-0"
+            style={{ cursor: "pointer" }}
+            onClick={() => navigate("/login")}
+          >
+            Profile
+          </p>
         </div>
       )}
     </>

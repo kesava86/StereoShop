@@ -3,23 +3,26 @@ import productsData from "../../src/Data/productsData.js";
 import styles from "./Home.module.css";
 import { FaShippingFast, FaShieldAlt, FaTags, FaLock } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useCart } from "../Context/CartContext";
 
 export default function Home() {
+
+  const { addToCart } = useCart();
+
   /* ---------------- HERO SLIDER ---------------- */
   const sliderProducts = productsData.slice(0, 3);
   const [activeIndex, setActiveIndex] = useState(0);
   const renderStars = (count) => {
-  return (
-    <>
-      {[...Array(5)].map((_, i) => (
-        <span key={i} style={{ color: i < count ? "red" : "#555" }}>
-          ★
-        </span>
-      ))}
-    </>
-  );
-};
-
+    return (
+      <>
+        {[...Array(5)].map((_, i) => (
+          <span key={i} style={{ color: i < count ? "red" : "#555" }}>
+            ★
+          </span>
+        ))}
+      </>
+    );
+  };
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -86,17 +89,21 @@ export default function Home() {
                 </span>
               </div>
 
+              <Link to={`/product/${product.id}`}>
               <button className="btn btn-danger px-4 rounded-1">
                 Shop Now
               </button>
+              </Link>
             </div>
 
             <div className="col-md-6 text-center">
+              <Link to={`/product/${product.id}`}>
               <img
                 src={product.heroImage || product.images[0]}
                 alt={product.title}
                 className={styles.productImage}
               />
+              </Link>
             </div>
           </div>
 
@@ -130,7 +137,9 @@ export default function Home() {
               <p className="text-white text-center mb-2 small">{item.title}</p>
 
               {/* IMAGE */}
+              <Link to={`/product/${item.id}`}>
               <img src={item.images[0]} alt={item.title} />
+              </Link>
 
               {/* PRICE (BOTTOM) */}
               <div className="text-center mt-3">
@@ -184,12 +193,13 @@ export default function Home() {
             {topProducts.map((item) => (
               <div key={item.id} className="col-lg-3 col-md-4 col-sm-6">
                 <div className={styles.topCard}>
-                  <img
-                    src={item.images[0]}
-                    alt={item.title}
-                    className={styles.topImg}
-                  />
-
+                  <Link to={`/product/${item.id}`}>
+                    <img
+                      src={item.images[0]}
+                      alt={item.title}
+                      className={styles.topImg}
+                    />
+                  </Link>
                   <div className={styles.topBody}>
                     <div className={styles.rating}>
                       {renderStars(item.rateCount)}
@@ -208,7 +218,7 @@ export default function Home() {
                     </div>
                   </div>
 
-                  <button className={styles.cartBtn}>Add to cart</button>
+                  <button onClick={() => addToCart(product)} className={styles.cartBtn}>Add to cart</button>
                 </div>
               </div>
             ))}

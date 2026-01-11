@@ -1,8 +1,13 @@
 import React, { useMemo, useState } from "react";
 import productsData from "../../src/Data/productsData";
 import styles from "./AllProducts.module.css";
+import { Link } from "react-router-dom";
+import { useCart } from "../Context/CartContext";
 
 export default function AllProducts() {
+
+  const { addToCart } = useCart();
+
   /* ---------------- STATE ---------------- */
   const [sortBy, setSortBy] = useState("");
   const [brands, setBrands] = useState([]);
@@ -149,11 +154,13 @@ export default function AllProducts() {
               {filteredProducts.map((item) => (
                 <div key={item.id} className="col-lg-3 col-md-4 col-sm-6">
                   <div className={styles.card}>
-                    <img
-                      src={item.images[0]}
-                      alt={item.title}
-                      className={styles.img}
-                    />
+                    <Link to={`/product/${item.id}`}>
+                      <img
+                        src={item.images[0]}
+                        alt={item.title}
+                        className={styles.img}
+                      />
+                    </Link>
 
                     <div className={styles.body}>
                       <div className={styles.rating}>
@@ -171,7 +178,7 @@ export default function AllProducts() {
                       </div>
                     </div>
 
-                    <button className={styles.cartBtn}>Add to cart</button>
+                    <button onClick={() => addToCart(item)} className={styles.cartBtn}>Add to cart</button>
                   </div>
                 </div>
               ))}
