@@ -4,10 +4,12 @@ import { IoSearch, IoCartOutline, IoMenu, IoClose } from "react-icons/io5";
 import { GoPerson } from "react-icons/go";
 import styles from "./Header.module.css";
 import { useCart } from "../Context/CartContext";
+import SearchOverlay from "./SearchOverlay";
 
-export default function Header() {
+export default function Header({ onProfileClick }) {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
+  const [showSearch, setShowSearch] = useState(false);
 
   const { cart } = useCart();
 
@@ -24,7 +26,11 @@ export default function Header() {
 
         {/* Desktop Icons */}
         <div className="d-none d-sm-flex align-items-center text-white">
-          <div className={`${styles.iconBox} me-5 shadow`}>
+          <div
+            className={`${styles.iconBox} me-5`}
+            style={{ cursor: "pointer" }}
+            onClick={() => setShowSearch(true)}
+          >
             <IoSearch size={20} />
             <span className={styles.iconText}>Search</span>
           </div>
@@ -46,15 +52,13 @@ export default function Header() {
           {/* PROFILE DROPDOWN */}
 
           <div className={`position-relative ${styles.profileWrapper}`}>
-            <div
-              onClick={() => navigate("/login")}
-              style={{ cursor: "pointer" }}
-            >
+            {/* PROFILE ICON */}
+            <div  style={{ cursor: "pointer" }}>
               <GoPerson size={20} />
               <span className={styles.iconText}>Profile</span>
             </div>
 
-            {/* Dropdown */}
+            {/* DROPDOWN (ON HOVER via CSS) */}
             <div className={`${styles.profileDropdown} shadow`}>
               <p className="mb-1 text-white fw-semibold">Hello!</p>
               <p className="small text-secondary mb-3">
@@ -62,23 +66,27 @@ export default function Header() {
               </p>
 
               <p
-                className=" w-50 mb-2 text-secondary "
+                className="w-50 mb-2 text-light"
                 style={{
                   cursor: "pointer",
-                  border: "1px solid #444",
-                  padding: "4px",
-                  borderRadius: "2px",
+                  border: "1px solid #ccc",
+                  padding: "10px",
+                  borderRadius: "5px",
+                  textAlign: "center",
+                  fontSize:"12px",
+                  fontWeight:"bold"
                 }}
-                onClick={() => navigate("/login")}
+                onClick={onProfileClick}
               >
                 Login / Signup
               </p>
+
               <hr />
 
               <p
-                className="text-secondary small mb-0 "
+                className="text-light small mb-0"
                 style={{ cursor: "pointer" }}
-                onClick={() => navigate("/login")}
+                onClick={onProfileClick} 
               >
                 Please Login
               </p>
@@ -99,27 +107,45 @@ export default function Header() {
       {/* MOBILE MENU */}
       {open && (
         <div className="d-sm-none text-white px-4 py-3 bg-black">
-          <p className="mb-3" style={{ cursor: "pointer" }}>
-            Search
-          </p>
-
+          {/* SEARCH */}
           <p
             className="mb-3"
             style={{ cursor: "pointer" }}
-            onClick={() => navigate("/cart")}
+            onClick={() => {
+              setShowSearch(true); // ✅ open search overlay
+              setOpen(false); // ✅ close hamburger
+            }}
+          >
+            Search
+          </p>
+
+          {/* CART */}
+          <p
+            className="mb-3"
+            style={{ cursor: "pointer" }}
+            onClick={() => {
+              navigate("/cart"); // ✅ go to cart page
+              setOpen(false); // ✅ close hamburger
+            }}
           >
             Cart
           </p>
 
+          {/* PROFILE */}
           <p
             className="mb-0"
             style={{ cursor: "pointer" }}
-            onClick={() => navigate("/login")}
+            onClick={() => {
+              onProfileClick(); // ✅ open login overlay
+              setOpen(false); // ✅ close hamburger
+            }}
           >
             Profile
           </p>
         </div>
       )}
+
+      {showSearch && <SearchOverlay onClose={() => setShowSearch(false)} />}
     </>
   );
 }

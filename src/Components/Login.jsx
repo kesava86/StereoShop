@@ -1,22 +1,30 @@
 import React from "react";
 import styles from "./Login.module.css";
-import { Link } from "react-router-dom";
 
-export default function Login() {
+export default function Login({ onClose, onSignupOpen }) {
   return (
-    <div className={`${styles.overlay} d-flex align-items-center justify-content-center`}>
+    <div
+      className={`${styles.overlay} d-flex align-items-center justify-content-center`}
+    >
       <div className={`${styles.loginBox} p-4`}>
-
         {/* Close Button */}
-        <Link to="/"><button className={styles.closeBtn}>×</button></Link>
+        <button className={styles.closeBtn} onClick={onClose}>
+          ×
+        </button>
 
         {/* Title */}
         <h3 className="text-white mb-2">Login</h3>
-        <Link to="/signup" className="text-white text-decoration-none">
+
         <p className="text-secondary mb-4">
-          New to Stereo-Shop? <span className={styles.linkText}>Create an account</span>
+          New to Stereo-Shop?{" "}
+          <span
+            className={styles.linkText}
+            style={{ cursor: "pointer" }}
+            onClick={onSignupOpen}
+          >
+            Create an account
+          </span>
         </p>
-        </Link>
 
         {/* Email */}
         <input
@@ -36,7 +44,6 @@ export default function Login() {
         <button className={`btn btn-danger w-100 mt-3 ${styles.loginBtn}`}>
           Login
         </button>
-
       </div>
     </div>
   );

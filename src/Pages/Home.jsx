@@ -168,7 +168,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* ================= TOP PRODUCTS ================= */}
+      {/* TOP PRODUCTS  */}
       <div className={styles.topWrapper}>
         <h3 className="text-center text-white mb-4">Top Products</h3>
 

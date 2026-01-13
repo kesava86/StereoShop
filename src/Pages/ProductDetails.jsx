@@ -9,18 +9,15 @@ export default function ProductDetails() {
   const { id } = useParams();
   const { addToCart } = useCart();
 
-  /* ---------------- PRODUCT STATE ---------------- */
   const [product, setProduct] = useState(null);
   const [activeImg, setActiveImg] = useState("");
   const [tab, setTab] = useState("specs");
 
-  /* ---------------- LOAD PRODUCT WHEN ID CHANGES ---------------- */
   useEffect(() => {
     const foundProduct = productsData.find((p) => p.id === Number(id));
     setProduct(foundProduct);
   }, [id]);
 
-  /* ---------------- RESET IMAGE & TAB ON PRODUCT CHANGE ---------------- */
   useEffect(() => {
     if (product) {
       setActiveImg(product.images[0]);
@@ -30,7 +27,7 @@ export default function ProductDetails() {
 
   if (!product) return null;
 
-  /* ---------------- RELATED PRODUCTS ---------------- */
+  /* RELATED PRODUCTS */
   const relatedProducts = productsData.filter(
     (p) => p.category === product.category && p.id !== product.id
   );
@@ -38,7 +35,7 @@ export default function ProductDetails() {
   return (
     <div className={styles.wrapper}>
       <div className="container">
-        {/* ================= SECTION 1 : PRODUCT INFO ================= */}
+        {/*PRODUCT INFO */}
         <div className="row mb-5">
           {/* LEFT : IMAGE GALLERY */}
           <div className={`col-md-6 d-flex ${styles.imageSection}`}>
@@ -121,7 +118,7 @@ export default function ProductDetails() {
           </div>
         </div>
 
-        {/* ================= SECTION 2 : TABS ================= */}
+        {/* TABS */}
         <div className={`${styles.section2} mb-5`}>
           {/* TAB HEADERS */}
           <div className={styles.tabs}>
@@ -145,7 +142,6 @@ export default function ProductDetails() {
             </span>
           </div>
 
-          {/* TAB CONTENT */}
           {tab === "specs" && (
             <div className={styles.specs}>
               <p>
@@ -194,7 +190,7 @@ export default function ProductDetails() {
           )}
         </div>
 
-        {/* ================= SECTION 3 : RELATED PRODUCTS ================= */}
+        {/* RELATED PRODUCTS  */}
         <h3 className="text-center text-white mb-4">Related Products</h3>
 
         <div className={styles.relatedRow}>

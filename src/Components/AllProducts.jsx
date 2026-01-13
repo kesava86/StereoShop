@@ -44,25 +44,20 @@ export default function AllProducts() {
   const filteredProducts = useMemo(() => {
     let data = [...productsData];
 
-    // Brand filter
     if (brands.length) {
       data = data.filter((p) => brands.includes(p.brand));
     }
 
-    // Category filter
     if (categories.length) {
       data = data.filter((p) => categories.includes(p.category));
     }
 
-    // Price filter
     data = data.filter((p) => p.finalPrice <= price);
 
-    // ⭐ TOP PRODUCTS (ONLY 5 STAR)
     if (sortBy === "top") {
       data = data.filter((p) => p.rateCount === 5);
     }
 
-    // Price sorting
     if (sortBy === "low") {
       data.sort((a, b) => a.finalPrice - b.finalPrice);
     }
@@ -78,7 +73,6 @@ export default function AllProducts() {
     <div className={styles.wrapper}>
       <div className="container-fluid">
         <div className="row">
-          {/* ================= SIDEBAR ================= */}
           <div className="col-lg-2 col-md-3">
             <div className={styles.sidebar}>
               <button className={styles.clearBtn} onClick={clearFilters}>
@@ -148,7 +142,7 @@ export default function AllProducts() {
             </div>
           </div>
 
-          {/* ================= PRODUCTS ================= */}
+          {/* PRODUCTS */}
           <div className="col-lg-10 col-md-9">
             <div className="row g-4">
               {filteredProducts.map((item) => (

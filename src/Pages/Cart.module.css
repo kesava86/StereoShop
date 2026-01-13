@@ -1,97 +1,97 @@
 .cartWrapper {
-  background: #000;
-  min-height: 100vh;
-  padding: 40px 0;
-  color: #ccc;
+    background: #000;
+    min-height: 100vh;
+    padding: 40px 0;
+    color: #ccc;
 }
 
 .cartItem {
-  display: flex;
-  gap: 15px;
-  padding: 20px;
-  border-bottom: 1px solid #222;
-  align-items: center;
+    display: flex;
+    gap: 15px;
+    padding: 20px;
+    border-bottom: 1px solid #222;
+    align-items: center;
 }
 
 .cartItem img {
-  width: 100px;
-  object-fit: contain;
+    width: 100px;
+    object-fit: contain;
 }
 
 .old {
-  text-decoration: line-through;
-  color: #777;
-  margin-left: 8px;
+    text-decoration: line-through;
+    color: #777;
+    margin-left: 8px;
 }
 
 .qtyBox {
-  display: flex;
-  gap: 10px;
-  margin-top: 8px;
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
 }
 
 .qtyBox button {
-  background: #111;
-  color: white;
-  border: 1px solid #333;
-  width: 30px;
+    background: #111;
+    color: white;
+    border: 1px solid #333;
+    width: 30px;
 }
 
 .delete {
-  color: #ccc;
-  cursor: pointer;
+    color: #ccc;
+    cursor: pointer;
 }
 
 .summary {
-  background: #111;
-  padding: 20px;
+    background: #111;
+    padding: 20px;
 }
 
 .summary div {
-  display: flex;
-  justify-content: space-between;
-  margin: 8px 0;
+    display: flex;
+    justify-content: space-between;
+    margin: 8px 0;
 }
 
 .discount {
-  color: #1f8f2e;
+    color: #1f8f2e;
 }
 
 .total {
-  font-size: 18px;
-  font-weight: bold;
+    font-size: 18px;
+    font-weight: bold;
 }
 
 .checkout {
-  width: 100%;
-  margin-top: 20px;
-  padding: 5px;
-  background: red;
-  color: white;
-  border: none;
+    width: 100%;
+    margin-top: 20px;
+    padding: 5px;
+    background: red;
+    color: white;
+    border: none;
 }
 
 /* EMPTY CART */
 .emptyWrapper {
-  min-height: 80vh;
-  background: #000;
-  color: #ccc;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    min-height: 80vh;
+    background: #000;
+    color: #ccc;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .emptyIcon {
-  color: red;
-  margin-bottom: 20px;
+    color: red;
+    margin-bottom: 20px;
 }
 
 .shopBtn {
-  background: red;
-  color: white;
-  border: none;
-  padding: 12px 28px;
-  margin-top: 20px;
-  font-size: 15px;
+    background: red;
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    margin-top: 20px;
+    font-size: 15px;
 }
